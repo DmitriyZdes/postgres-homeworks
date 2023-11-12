@@ -1,27 +1,24 @@
 -- SQL-команды для создания табли
 
-CREATE TABLE employees
-
-( 		employee_id int PRIMARY KEY,
-  		first_name varchar(20) not null,
-  		last_name varchar(20) not null,
-  		operation_id int UNIQUE
-
+CREATE TABLE employees (
+  employee_id INT PRIMARY KEY,
+  first_name VARCHAR(50),
+  last_name VARCHAR(50),
+  title VARCHAR(50),
+  birth_date DATE,
+  notes TEXT
 );
 
-CREATE TABLE customers
-
-( 		customer_id varchar(20) PRIMARY KEY,
-  		nickname varchar(20),
-  		operation_id int UNIQUE
-
+CREATE TABLE customers (
+  customer_id VARCHAR(10) PRIMARY KEY,
+  company_name VARCHAR(50),
+  contact_name VARCHAR(50)
 );
 
-CREATE TABLE orders
-
-( 		order_id int UNIQUE,
-  		operation_date date not null
-        employee_id int PRIMARY KEY REFERENCES employees(employee_id)
-        customer_id varchar(20) REFERENCES customers(customer_id)
-
-)
+CREATE TABLE orders (
+  order_id INT PRIMARY KEY,
+  customer_id VARCHAR(10) REFERENCES customers(customer_id),
+  employee_id INT REFERENCES employees(employee_id),
+  order_date DATE,
+  ship_city VARCHAR(50)
+);
